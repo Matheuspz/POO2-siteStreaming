@@ -9,28 +9,29 @@ import java.util.List;
 public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_perfil", nullable = false)
     private Long idPerfil;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "nome_perfil", unique = true, nullable = false)
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
-    private Usuario idUsuario;
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
-    @OneToMany(mappedBy = "Perfil", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Visualizacao> visualizacoes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Perfil")
+    @OneToMany(mappedBy = "perfil")
     private List<Avaliacao> avaliacoes = new ArrayList<>();
 
 
     public Perfil() {
     }
-    public Perfil(Long idPerfil, String nome, Usuario idUsuario) {
+    public Perfil(Long idPerfil, String nome, Usuario usuario) {
         this.idPerfil = idPerfil;
         this.nome = nome;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
     }
 
     public Long getIdPerfil() {
@@ -45,11 +46,11 @@ public class Perfil {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario idUsuario) {
+        this.usuario = idUsuario;
     }
     public List<Visualizacao> getVisualizacoes() {
         return visualizacoes;

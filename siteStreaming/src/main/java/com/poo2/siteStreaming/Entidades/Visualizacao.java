@@ -2,37 +2,37 @@ package com.poo2.siteStreaming.Entidades;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 public class Visualizacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_visualizacao", nullable = false)
     private Long idVisualizacao;
 
-    @Column(nullable = false)
+    @Column(name = "data_hora", nullable = false)
     private LocalDateTime dataHora;
-    @Column(nullable = false)
-    private int progreso;
+    @Column(name = "progresso", nullable = false)
+    private int progresso;
 
     @ManyToOne
-    @JoinColumn(name = "idPerfil", nullable = false)
-    private Perfil idPerfil;
+    @JoinColumn(name = "id_perfil", nullable = false)
+    private Perfil perfil;
 
     @ManyToOne
-    @JoinColumn(name = "idVideo", nullable = false)
-    private Video idVideo;
+    @JoinColumn(name = "id_video", nullable = false)
+    private Video video;
 
 
     public Visualizacao() {
     }
-    public Visualizacao(Long idVisualizacao, Perfil idPerfil, Video idVideo, LocalDateTime dataHora, int progreso) {
+    public Visualizacao(Long idVisualizacao, Perfil perfil, Video video, LocalDateTime dataHora, int progresso) {
         this.idVisualizacao = idVisualizacao;
-        this.idPerfil = idPerfil;
-        this.idVideo = idVideo;
+        this.perfil = perfil;
+        this.video = video;
         this.dataHora = dataHora;
-        this.progreso = progreso;
+        this.progresso = progresso;
     }
 
     public Long getIdVisualizacao() {
@@ -41,17 +41,17 @@ public class Visualizacao {
     public void setIdVisualizacao(Long idVisualizacao) {
         this.idVisualizacao = idVisualizacao;
     }
-    public Perfil getIdPerfil() {
-        return idPerfil;
+    public Perfil getPerfil() {
+        return perfil;
     }
-    public void setIdPerfil(Perfil idPerfil) {
-        this.idPerfil = idPerfil;
+    public void setPerfil(Perfil idPerfil) {
+        this.perfil = idPerfil;
     }
-    public Video getIdVideo() {
-        return idVideo;
+    public Video getVideo() {
+        return video;
     }
-    public void setIdVideo(Video idVideo) {
-        this.idVideo = idVideo;
+    public void setVideo(Video idVideo) {
+        this.video = idVideo;
     }
     public LocalDateTime getDataHora() {
         return dataHora;
@@ -59,11 +59,11 @@ public class Visualizacao {
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
     }
-    public int getProgreso() {
-        return progreso;
+    public int getProgresso() {
+        return progresso;
     }
-    public void setProgreso(int progreso) {
-        this.progreso = progreso;
+    public void setProgresso(int progreso) {
+        this.progresso = progreso;
     }
 
 }

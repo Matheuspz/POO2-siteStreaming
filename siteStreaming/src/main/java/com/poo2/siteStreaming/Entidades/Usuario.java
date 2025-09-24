@@ -11,18 +11,19 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario", nullable = false)
     private Long idUsuario;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "nome", unique = true, nullable = false)
     private String nome;
-    @Column(unique = true, nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
-    @Column(nullable = false)
+    @Column(name = "senha", nullable = false)
     private String senha;
-    @Column(nullable = false)
+    @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dataCadastro;
 
-    @OneToMany(mappedBy = "Usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Perfil> perfis = new ArrayList<>();
 
     public Usuario() {

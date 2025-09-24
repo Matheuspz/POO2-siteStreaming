@@ -1,7 +1,12 @@
 package com.poo2.siteStreaming.Repository;
 
 import com.poo2.siteStreaming.Entidades.Video;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface VideoRepository extends Repository<Video,Integer> {
+import java.util.List;
+
+public interface VideoRepository extends JpaRepository<Video,Integer> {
+
+    List<Video> findAllByOrderByTituloAsc();
+
 }

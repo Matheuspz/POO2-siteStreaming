@@ -8,39 +8,41 @@ import java.util.List;
 public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idVideo;
+    @Column(name = "id_video", nullable = false)
+    private Long idVideo;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "titulo", unique = true, nullable = false)
     private String titulo;
+    @Column(name = "descricao")
     private String descricao;
-    @Column(nullable = false)
+    @Column(name = "duracao", nullable = false)
     private int duracao;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
-    private Categoria idCategoria;
+    @JoinColumn(name = "id_categoria", nullable = false)
+    private Categoria categoria;
 
-    @OneToMany(mappedBy = "Video", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Visualizacao> visualizacoes;
-    @OneToMany(mappedBy = "Video", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Avaliacao> avaliacoes;
 
     public Video() {
     }
-    public Video(int idVideo, String titulo, String descricao, int duracao, Categoria idCategoria, List<Visualizacao> visualizacoes, List<Avaliacao> avaliacoes) {
+    public Video(Long idVideo, String titulo, String descricao, int duracao, Categoria categoria, List<Visualizacao> visualizacoes, List<Avaliacao> avaliacoes) {
         this.idVideo = idVideo;
         this.titulo = titulo;
         this.descricao = descricao;
         this.duracao = duracao;
-        this.idCategoria = idCategoria;
+        this.categoria = categoria;
         this.visualizacoes = visualizacoes;
         this.avaliacoes = avaliacoes;
     }
 
-    public int getIdVideo() {
+    public Long getIdVideo() {
         return idVideo;
     }
-    public void setIdVideo(int idVideo) {
+    public void setIdVideo(Long idVideo) {
         this.idVideo = idVideo;
     }
     public String getTitulo() {
@@ -61,11 +63,11 @@ public class Video {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-    public Categoria getIdCategoria() {
-        return idCategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
-    public void setIdCategoria(Categoria idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setCategoria(Categoria idCategoria) {
+        this.categoria = idCategoria;
     }
     public List<Visualizacao> getVisualizacoes() {
         return visualizacoes;
