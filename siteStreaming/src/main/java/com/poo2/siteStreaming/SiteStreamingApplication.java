@@ -15,25 +15,24 @@ public class SiteStreamingApplication {
 
 	public static void main(String[] args) {
         SpringApplication.run(SiteStreamingApplication.class, args);
-
     }
     @Bean
-    CommandLineRunner run(VideoRepository repository, CategoriaRepository categoriaRepository, UsuarioRepository usuarioRepository) {
+    CommandLineRunner run(VideoRepository videoRepository, CategoriaRepository categoriaRepository, UsuarioRepository usuarioRepository) {
         return args -> {
             System.out.println("\n ---------------------------------------- ");
             System.out.println(" -- TODOS OS VIDEOS -- ");
             System.out.println(" ---------------------------------------- \n");
-            repository.findAllByOrderByTituloAsc().forEach(v ->
+            videoRepository.findAllByOrderByTituloAsc().forEach(v ->
                     System.out.println(
                             "\nVídeo: " + v.getTitulo() +
                                     " | Categoria: " +(v.getCategoria()  != null ? v.getCategoria().getNome() : "Sem categoria") + "\n"
                     )
             );
             System.out.println(" ---------------------------------------- ");
-            System.out.println(" -- TODOS OS VIDEOS DA CATEGORIA AÇÃO -- ");
+            System.out.println(" -- TODOS OS VIDEOS DE UMA CATEGORIA   -- ");
             System.out.println(" ---------------------------------------- \n");
-            Categoria acao = categoriaRepository.findByNomeIgnoreCase("Ação");
-            repository.findByCategoriaOrderByTituloAsc(acao).forEach(v ->
+            Categoria categoria = categoriaRepository.findByNomeIgnoreCase("Ação");
+            videoRepository.findByCategoriaOrderByTituloAsc(categoria).forEach(v ->
                     System.out.println(
                             "\nVídeo: " + v.getTitulo() +
                                     " | Categoria: " +(v.getCategoria()  != null ? v.getCategoria().getNome() : "Sem categoria") + "\n"
@@ -42,7 +41,7 @@ public class SiteStreamingApplication {
             System.out.println(" ---------------------------------------- ");
             System.out.println(" -- TOP 10 VIDEOS MELHORES AVALIADOS -- ");
             System.out.println(" ---------------------------------------- \n");
-            repository.findTop10MelhorAvaliados(PageRequest.of(0, 10)).forEach(v ->
+            videoRepository.findTop10MelhorAvaliados(PageRequest.of(0, 10)).forEach(v ->
                 System.out.println(
                         "\nVídeo: " + v.titulo() +
                                 " | Categoria: " + (v.categoria() != null ? v.categoria() : "Sem categoria") + " | Nota: " + v.mediaNota() + "\n"
@@ -51,7 +50,7 @@ public class SiteStreamingApplication {
             System.out.println(" ---------------------------------------- ");
             System.out.println(" -- TOP 10 VIDEOS MAIS ASSISTIDOS -- ");
             System.out.println(" ---------------------------------------- \n");
-            repository.findTop10MaisAssistidos(PageRequest.of(0, 10)).forEach(v ->
+            videoRepository.findTop10MaisAssistidos(PageRequest.of(0, 10)).forEach(v ->
                 System.out.println(
                         "\nVídeo: " + v.titulo() +
                                 " | Categoria: " + (v.categoria() != null ? v.categoria() : "Sem categoria") + " | Total de Vizualização: " + v.totalVizualizacoes() + "\n"

@@ -1,0 +1,85 @@
+classDiagram
+    namespace Entidades {
+        class Usuario{
+            -idUsuario : Long
+            -nome : String
+            -email : String
+            -senha : String
+            -dataCadastro : LocalDateTime
+        }
+        class Perfil {
+            -idPerfil : Long
+            -nomePerfil : String
+            -idUsuario : Long
+        }
+        class Visualizacao{
+            -idVisualizacao : Long
+            -idPerfil : Long
+            -idVideo : Long
+            -dataHora : LocalDateTime
+            -progresso : int
+        }
+        class Video{
+            -idVideo : Long
+            -titulo : String
+            -descricao : String
+            -duracao : int
+            -idCategoria : Long
+        }
+        class Categoria{
+            -idCategoria : Long
+            -nome : String
+        }
+        class Avaliacao{
+            -idAvaliacao : Long
+            -idPerfil : Long
+            -idVideo : Long
+            -nota : int
+            -comentario : String
+        }
+    }
+    namespace Repository {
+        class UsuarioRepository { <<Interface>>
+            +findTopUsuariosMaisAtivos(Pageable pageable) List~UsuarioEstatisticaDTO~
+        }
+
+        class PefilRepository {
+
+        }
+
+        class VisualizacaoRepository {
+
+        }
+
+        class VideoRepository {
+            +findAllByOrderByTituloAsc() List~Video~
+            +findByCategoriaOrderByTituloAsc(Categoria categoria) List~Video~
+            +findTop10MelhorAvaliados(Pageable pageable) List~VideoEstatisticaDTO~
+            +findTop10MaisAssistidos(Pageable pageable) List~VideoEstatisticaDTO~
+        }
+
+        class CategoriaRepository {
+            +findByNomeIgnoreCase(String nome) Categoria
+        }
+
+        class AvaliacaoRepository {
+
+        }
+
+    }
+    namespace DTO {
+        class UsuarioEstatisticaDTO
+        class VideoEstatisticaDTO
+    }
+
+    class SiteStreamingApplication {
+        +main()
+        +run() CommandLineRunner
+    }
+
+    Usuario "1" *-- "0..*" Perfil
+    Perfil "1" *-- "0..*" Visualizacao
+    Perfil "1" -- "0..*" Avaliacao
+    Video "1" *-- "0..*" Avaliacao
+    Video "1" *-- "0..*" Visualizacao
+    Categoria "1" --o "0..*" Video

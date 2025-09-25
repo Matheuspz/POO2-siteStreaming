@@ -1,0 +1,101 @@
+USE streaming;
+
+INSERT INTO usuario (nome, email, senha, data_cadastro) VALUES
+('João Silva', 'joao@email.com', '123456', NOW()),
+('Maria Oliveira', 'maria@email.com', 'abcdef', NOW()),
+('Carlos Souza', 'carlos@email.com', 'senha123', NOW()),
+('Fernanda Lima', 'fernanda@email.com', 'abc123', NOW()),
+('Rafael Gomes', 'rafael@email.com', 'senha321', NOW()),
+('Beatriz Costa', 'beatriz@email.com', 'pass123', NOW()),
+('Pedro Henrique', 'pedro@email.com', 'pedro123', NOW()),
+('Ana Souza', 'ana@email.com', 'anapass', NOW()),
+('Lucas Almeida', 'lucas@email.com', 'lucaspass', NOW()),
+('Juliana Ribeiro', 'juliana@email.com', 'juliana123', NOW()),
+('Bruno Fernandes', 'bruno@email.com', 'bruno321', NOW()),
+('Camila Martins', 'camila@email.com', 'camila123', NOW()),
+('Rodrigo Alves', 'rodrigo@email.com', 'rodrigo123', NOW()),
+('Patrícia Mendes', 'patricia@email.com', 'patricia123', NOW()),
+('Gustavo Pereira', 'gustavo@email.com', 'gustavo123', NOW());
+
+INSERT INTO perfil (nome_perfil, id_usuario) VALUES
+('João - Principal', 1),
+('Maria - Kids', 2),
+('Maria - Principal', 2),
+('Carlos - Principal', 3),
+('Fernanda - Principal', 4),
+('Rafael - Principal', 5),
+('Beatriz - Kids', 6),
+('Beatriz - Principal', 6),
+('Pedro - Principal', 7),
+('Ana - Principal', 8),
+('Lucas - Principal', 9),
+('Juliana - Principal', 10),
+('Bruno - Kids', 11),
+('Camila - Principal', 12),
+('Rodrigo - Principal', 13);
+
+INSERT INTO categoria (nome) VALUES
+('Ação'),
+('Comédia'),
+('Drama'),
+('Documentário'),
+('Animação'),
+('Suspense'),
+('Terror'),
+('Ficção Científica'),
+('Fantasia'),
+('Romance'),
+('Musical'),
+('Histórico'),
+('Esporte'),
+('Guerra'),
+('Biografia');
+
+INSERT INTO video (titulo, descricao, duracao, id_categoria) VALUES
+('Missão Impossível', 'Filme de ação com Tom Cruise', 120, 1),
+('Velozes e Furiosos', 'Corridas e muita adrenalina', 140, 1),
+('Todo Mundo em Pânico', 'Paródia de filmes de terror', 90, 2),
+('A Procura da Felicidade', 'Drama com Will Smith', 117, 3),
+('Planeta Terra', 'Documentário sobre a vida selvagem', 60, 4),
+('Toy Story', 'Animação clássica da Pixar', 81, 5),
+('Gladiador', 'Épico histórico de batalhas romanas', 155, 10),
+('Os Vingadores', 'Super-heróis se unem para salvar o mundo', 143, 1),
+('Deadpool', 'Comédia de ação e humor ácido', 108, 2),
+('O Rei Leão', 'Animação clássica da Disney', 88, 5),
+('Interestelar', 'Viagem espacial e drama familiar', 169, 3),
+('Stranger Things: The Movie', 'Aventura e mistério nos anos 80', 115, 4),
+('A Fantástica Fábrica de Chocolate', 'Comédia e fantasia para todas as idades', 100, 2),
+('Homem-Aranha: Sem Volta Para Casa', 'Ação e aventura com super-heróis', 148, 1),
+('Soul', 'Animação emocionante sobre música e propósito', 100, 5);
+
+INSERT INTO avaliacao (nota, comentario, id_perfil, id_video) VALUES
+(5, 'Muito bom, cheio de ação!', 1, 1),
+(4, 'Filme divertido para toda a família.', 2, 6),
+(5, 'História emocionante, excelente atuação.', 3, 4),
+(3, 'Legal, mas achei longo demais.', 4, 2);
+
+INSERT INTO visualizacao (data_hora, progresso, id_perfil, id_video) VALUES
+(NOW(), 45, 1, 1),
+(NOW(), 90, 2, 6),
+(NOW(), 117, 3, 4),
+(NOW(), 50, 4, 2),
+(NOW(), 100, 3, 1),
+(NOW(), 120, 4, 1),
+(NOW(), 60, 1, 2),
+(NOW(), 140, 2, 2),
+(NOW(), 30, 2, 3),
+(NOW(), 90, 3, 3),
+(NOW(), 60, 1, 4),
+(NOW(), 117, 4, 4),
+(NOW(), 20, 1, 5),
+(NOW(), 60, 2, 5),
+(NOW(), 40, 3, 6),
+(NOW(), 81, 4, 6),
+(NOW(), 150, 1, 7),
+(NOW(), 169, 3, 7),
+(NOW(), 30, 2, 8),
+(NOW(), 88, 4, 8),
+(NOW(), 50, 1, 9),
+(NOW(), 136, 3, 9),
+(NOW(), 100, 2, 10),
+(NOW(), 148, 4, 10);
